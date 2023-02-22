@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common'
 import { Wish } from '@prisma/client'
 import { AppService } from './app.service'
 
@@ -19,5 +19,10 @@ export class AppController {
     @Post('/add-wish')
     postwish(@Body() wish: Wish) {
         return this.appService.addwish(wish)
+    }
+
+    @Delete('/remove-wish')
+    deleteWish(@Query('id') id: string) {
+        return this.appService.deleteWish(id)
     }
 }

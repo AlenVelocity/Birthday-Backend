@@ -15,4 +15,10 @@ export class AppService {
     public getWishes(wishee: string): Promise<Wish[]> {
         return this.prismaService.wish.findMany({ where: { for: wishee } })
     }
+
+    public async deleteWish(wishId: string): Promise<void> {
+        await this.prismaService.wish.delete({
+            where: { id: wishId }
+        })
+    }
 }
